@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
-using System.CodeDom;
+// this class has the configuration manager
+using System.Configuration;
 using System.Data;
 
 namespace AdoDemo
@@ -15,10 +16,11 @@ namespace AdoDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string connect = ConfigurationManager.ConnectionStrings["dbsc"].ConnectionString;
             try
             {
-
-                conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+                conn = new SqlConnection();
+                conn.ConnectionString = "Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
                 string getPropertiesCommand = "SELECT * FROM lpProperty";
 
