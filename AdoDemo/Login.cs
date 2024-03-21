@@ -82,6 +82,7 @@ namespace AdoDemo
                                 {
                                     Program.user = new Model.User
                                     {
+                                        Id = (int)user["UserId"],
                                         Name = user["Name"].ToString(),
                                         Email = user["Email"].ToString(),
                                         UserType = user["UserType"].ToString(),
@@ -90,8 +91,8 @@ namespace AdoDemo
                                 }
                                 MessageBox.Show($"Login Successfull", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                Form1 form1 = new Form1();
-                                form1.Show();
+                                new Form1().Show();
+                                Login.ActiveForm.Close();
                             }
                             else
                             {
@@ -105,11 +106,11 @@ namespace AdoDemo
                         }
                         finally
                         {
+                            btn.Enabled = true;
+                            btn.Text = "Sign In";
                             conn.Close();
                         }
                     }
-                    btn.Enabled = true;
-                    btn.Text = "Sign In";
                 }
             }
         }

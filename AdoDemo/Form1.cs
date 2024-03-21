@@ -49,5 +49,38 @@ namespace AdoDemo
                 }
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void users_tab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void properties_add_property_btn_Click(object sender, EventArgs e)
+        {
+            new AddPropertyForm().Show();
+            //using (SqlConnection conn = new SqlConnection())
+            //{
+            //    conn.ConnectionString = "Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            //    try
+            //    {
+            //        SqlCommand cmd = new SqlCommand();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //    finally
+            //    {
+            //        conn.Close();
+            //    }
+            //}
+
+
+        }
     }
 }
