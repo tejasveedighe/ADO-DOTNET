@@ -12,39 +12,40 @@ namespace AdoDemo
             InitializeComponent();
         }
 
-        SqlConnection conn;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             string connect = ConfigurationManager.ConnectionStrings["dbsc"].ConnectionString;
-            try
+            using (SqlConnection conn = new SqlConnection())
             {
-                conn = new SqlConnection();
                 conn.ConnectionString = "Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+                try
+                {
+                    string getPropertiesCommand = "SELECT * FROM lpProperty";
 
-                string getPropertiesCommand = "SELECT * FROM lpProperty";
+                    SqlCommand sqlCommand = new SqlCommand(getPropertiesCommand, conn);
 
-                SqlCommand sqlCommand = new SqlCommand(getPropertiesCommand, conn);
-                conn.Open();
+                    conn.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
 
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
 
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-                BindingSource bindingSource = new BindingSource();
-                bindingSource.DataSource = sqlDataReader;
-                dataGridView1.DataSource = bindingSource;
+                    BindingSource bindingSource = new BindingSource();
+                    bindingSource.DataSource = sqlDataReader;
+                    dataGridView1.DataSource = bindingSource;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
     }

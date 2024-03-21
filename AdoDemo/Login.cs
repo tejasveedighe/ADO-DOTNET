@@ -74,10 +74,13 @@ namespace AdoDemo
                         {
                             if (user.Read())
                             {
-                                Program.user.Name = user["Name"].ToString();
-                                Program.user.Email = user["Email"].ToString();
-                                Program.user.UserType = user["UserType"].ToString();
-                                Program.user.Phone = user["Phone"].ToString();
+                                Program.user = new Model.User
+                                {
+                                    Name = user["Name"].ToString(),
+                                    Email = user["Email"].ToString(),
+                                    UserType = user["UserType"].ToString(),
+                                    Phone = user["Phone"].ToString(),
+                                };
                             }
                             MessageBox.Show($"Login Successfull", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Form1 form1 = new Form1();
