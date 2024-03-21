@@ -82,6 +82,8 @@
             propertyTitle_txt.Name = "propertyTitle_txt";
             propertyTitle_txt.Size = new Size(121, 23);
             propertyTitle_txt.TabIndex = 2;
+            propertyTitle_txt.TextChanged += propertyTitle_txt_TextChanged;
+            propertyTitle_txt.Validating += propertyTitle_txt_Validating;
             // 
             // label3
             // 
@@ -100,6 +102,7 @@
             propertyType_cb.Name = "propertyType_cb";
             propertyType_cb.Size = new Size(121, 23);
             propertyType_cb.TabIndex = 4;
+            propertyType_cb.Validating += propertyType_cb_Validating;
             // 
             // location_txt
             // 
@@ -107,6 +110,7 @@
             location_txt.Name = "location_txt";
             location_txt.Size = new Size(121, 23);
             location_txt.TabIndex = 6;
+            location_txt.Validating += location_txt_Validating;
             // 
             // label4
             // 
@@ -123,6 +127,8 @@
             price_txt.Name = "price_txt";
             price_txt.Size = new Size(121, 23);
             price_txt.TabIndex = 8;
+            price_txt.KeyPress += price_txt_KeyPress;
+            price_txt.Validating += price_txt_Validating;
             // 
             // label5
             // 
@@ -139,6 +145,8 @@
             bedroom_txt.Name = "bedroom_txt";
             bedroom_txt.Size = new Size(121, 23);
             bedroom_txt.TabIndex = 10;
+            bedroom_txt.KeyPress += price_txt_KeyPress;
+            bedroom_txt.Validating += bedroom_txt_Validating;
             // 
             // label6
             // 
@@ -155,6 +163,8 @@
             bathroom_txt.Name = "bathroom_txt";
             bathroom_txt.Size = new Size(121, 23);
             bathroom_txt.TabIndex = 12;
+            bathroom_txt.KeyPress += price_txt_KeyPress;
+            bathroom_txt.Validating += bathroom_txt_Validating;
             // 
             // label7
             // 
@@ -171,6 +181,7 @@
             squareFeet_txt.Name = "squareFeet_txt";
             squareFeet_txt.Size = new Size(121, 23);
             squareFeet_txt.TabIndex = 14;
+            squareFeet_txt.Validating += squareFeet_txt_Validating;
             // 
             // label8
             // 
@@ -188,6 +199,7 @@
             description_txt.Name = "description_txt";
             description_txt.Size = new Size(346, 134);
             description_txt.TabIndex = 16;
+            description_txt.Validating += description_txt_Validating;
             // 
             // label9
             // 
@@ -215,6 +227,7 @@
             status_cb.Name = "status_cb";
             status_cb.Size = new Size(121, 23);
             status_cb.TabIndex = 18;
+            status_cb.Validating += status_cb_Validating;
             // 
             // statusStrip1
             // 

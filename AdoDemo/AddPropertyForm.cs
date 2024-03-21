@@ -105,5 +105,88 @@ namespace AdoDemo
             }
         }
 
+        private void propertyTitle_txt_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void price_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != '\b';
+        }
+
+        private void propertyTitle_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(propertyTitle_txt, e, "Property Title");
+        }
+
+        private void squareFeet_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(squareFeet_txt, e, "Square Feet");
+        }
+
+        private void location_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(location_txt, e, "Location");
+        }
+
+        private void price_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(price_txt, e, "Price");
+        }
+
+        private void bedroom_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(bedroom_txt, e, "Number of Bedrooms");
+        }
+
+        private void bathroom_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(bathroom_txt, e, "Number of Bathrooms");
+        }
+
+        private void propertyType_cb_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateComboBox(propertyType_cb, e, "Property Type");
+        }
+
+        private void status_cb_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateComboBox(status_cb, e, "Status");
+        }
+
+        private void description_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(description_txt, e, "Description");
+        }
+
+        public void ValidateTextBox(TextBox textBox, CancelEventArgs e, string fieldName)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                errorProvider1.SetError(textBox, fieldName + " cannot be empty");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(textBox, "");
+            }
+        }
+
+        public void ValidateComboBox(ComboBox comboBox, CancelEventArgs e, string fieldName)
+        {
+            if (comboBox.SelectedIndex == -1)
+            {
+                e.Cancel = true;
+                comboBox.Focus();
+                errorProvider1.SetError(comboBox, fieldName + " must be selected");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(comboBox, "");
+            }
+        }
     }
 }
