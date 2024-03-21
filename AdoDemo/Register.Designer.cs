@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             label1 = new Label();
             statusStrip1 = new StatusStrip();
             crossLabel = new ToolStripStatusLabel();
@@ -45,10 +47,13 @@
             register_buyer_radio = new RadioButton();
             register_seller_radio = new RadioButton();
             label7 = new Label();
-            pictureBox1 = new PictureBox();
+            register_user_btn = new Button();
+            label8 = new Label();
+            errorProvider1 = new ErrorProvider(components);
             panel1.SuspendLayout();
-            statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -61,6 +66,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(292, 450);
             panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Resource1.logo;
+            pictureBox1.Image = Resource1.logo;
+            pictureBox1.Location = new Point(85, 145);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(119, 128);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -113,20 +129,24 @@
             register_name_txt.BorderStyle = BorderStyle.None;
             register_name_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             register_name_txt.Location = new Point(479, 96);
+            register_name_txt.MinimumSize = new Size(203, 28);
             register_name_txt.Name = "register_name_txt";
             register_name_txt.PlaceholderText = "Full Name";
-            register_name_txt.Size = new Size(203, 22);
+            register_name_txt.Size = new Size(203, 28);
             register_name_txt.TabIndex = 3;
+            register_name_txt.Validating += register_repass_txt_Validating;
             // 
             // register_email_txt
             // 
             register_email_txt.BorderStyle = BorderStyle.None;
             register_email_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             register_email_txt.Location = new Point(479, 145);
+            register_email_txt.MinimumSize = new Size(203, 28);
             register_email_txt.Name = "register_email_txt";
             register_email_txt.PlaceholderText = "Email";
-            register_email_txt.Size = new Size(203, 22);
+            register_email_txt.Size = new Size(203, 28);
             register_email_txt.TabIndex = 5;
+            register_email_txt.Validating += register_repass_txt_Validating;
             // 
             // label3
             // 
@@ -144,10 +164,12 @@
             register_phone_txt.BorderStyle = BorderStyle.None;
             register_phone_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             register_phone_txt.Location = new Point(479, 194);
+            register_phone_txt.MinimumSize = new Size(203, 28);
             register_phone_txt.Name = "register_phone_txt";
             register_phone_txt.PlaceholderText = "Phone No";
-            register_phone_txt.Size = new Size(203, 22);
+            register_phone_txt.Size = new Size(203, 28);
             register_phone_txt.TabIndex = 7;
+            register_phone_txt.Validating += register_repass_txt_Validating;
             // 
             // label4
             // 
@@ -165,10 +187,12 @@
             register_pass_txt.BorderStyle = BorderStyle.None;
             register_pass_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             register_pass_txt.Location = new Point(479, 242);
+            register_pass_txt.MinimumSize = new Size(203, 28);
             register_pass_txt.Name = "register_pass_txt";
             register_pass_txt.PlaceholderText = "Password";
-            register_pass_txt.Size = new Size(203, 22);
+            register_pass_txt.Size = new Size(203, 28);
             register_pass_txt.TabIndex = 9;
+            register_pass_txt.Validating += register_repass_txt_Validating;
             // 
             // label5
             // 
@@ -187,10 +211,12 @@
             register_repass_txt.BorderStyle = BorderStyle.None;
             register_repass_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             register_repass_txt.Location = new Point(479, 286);
+            register_repass_txt.MinimumSize = new Size(203, 28);
             register_repass_txt.Name = "register_repass_txt";
             register_repass_txt.PlaceholderText = "Re-password";
-            register_repass_txt.Size = new Size(203, 22);
+            register_repass_txt.Size = new Size(203, 28);
             register_repass_txt.TabIndex = 11;
+            register_repass_txt.Validating += register_repass_txt_Validating;
             // 
             // label6
             // 
@@ -215,6 +241,7 @@
             register_buyer_radio.TabStop = true;
             register_buyer_radio.Text = "Buyer";
             register_buyer_radio.UseVisualStyleBackColor = true;
+            register_buyer_radio.Validating += register_seller_radio_Validating;
             // 
             // register_seller_radio
             // 
@@ -228,6 +255,7 @@
             register_seller_radio.TabStop = true;
             register_seller_radio.Text = "Seller";
             register_seller_radio.UseVisualStyleBackColor = true;
+            register_seller_radio.Validating += register_seller_radio_Validating;
             // 
             // label7
             // 
@@ -241,17 +269,36 @@
             label7.Text = "Enter the Following Details ";
             label7.TextAlign = ContentAlignment.TopCenter;
             // 
-            // pictureBox1
+            // register_user_btn
             // 
-            pictureBox1.BackgroundImage = Resource1.logo;
-            pictureBox1.Image = Resource1.logo;
-            pictureBox1.Location = new Point(77, 96);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(119, 128);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            register_user_btn.BackColor = Color.MediumSeaGreen;
+            register_user_btn.FlatStyle = FlatStyle.Flat;
+            register_user_btn.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            register_user_btn.ForeColor = SystemColors.Control;
+            register_user_btn.Location = new Point(572, 377);
+            register_user_btn.Name = "register_user_btn";
+            register_user_btn.Size = new Size(110, 38);
+            register_user_btn.TabIndex = 2;
+            register_user_btn.Text = "Register";
+            register_user_btn.UseVisualStyleBackColor = false;
+            register_user_btn.Click += register_user_btn_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Cursor = Cursors.Hand;
+            label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = Color.MediumSeaGreen;
+            label8.Location = new Point(346, 395);
+            label8.Name = "label8";
+            label8.Size = new Size(162, 20);
+            label8.TabIndex = 14;
+            label8.Text = "Already a user? Sign In.";
+            label8.Click += label8_Click;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // Register
             // 
@@ -259,6 +306,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(800, 450);
+            Controls.Add(label8);
+            Controls.Add(register_user_btn);
             Controls.Add(label7);
             Controls.Add(register_seller_radio);
             Controls.Add(register_buyer_radio);
@@ -279,11 +328,13 @@
             MaximizeBox = false;
             Name = "Register";
             Text = "Register";
+            Load += Register_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -308,5 +359,8 @@
         private RadioButton register_seller_radio;
         private Label label7;
         private PictureBox pictureBox1;
+        private Button register_user_btn;
+        private Label label8;
+        private ErrorProvider errorProvider1;
     }
 }

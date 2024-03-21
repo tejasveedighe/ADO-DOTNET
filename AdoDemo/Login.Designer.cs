@@ -87,10 +87,11 @@
             // 
             SignInBtn.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             SignInBtn.BackColor = Color.MediumSeaGreen;
-            SignInBtn.FlatAppearance.BorderColor = Color.Black;
-            SignInBtn.FlatStyle = FlatStyle.Popup;
+            SignInBtn.FlatAppearance.BorderColor = Color.White;
+            SignInBtn.FlatAppearance.BorderSize = 0;
+            SignInBtn.FlatStyle = FlatStyle.Flat;
             SignInBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            SignInBtn.ForeColor = Color.Cornsilk;
+            SignInBtn.ForeColor = SystemColors.Control;
             SignInBtn.ImageAlign = ContentAlignment.TopRight;
             SignInBtn.Location = new Point(110, 339);
             SignInBtn.Name = "SignInBtn";
