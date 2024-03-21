@@ -83,6 +83,7 @@ namespace AdoDemo
                                 };
                             }
                             MessageBox.Show($"Login Successfull", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             Form1 form1 = new Form1();
                             form1.Show();
                         }
@@ -102,6 +103,21 @@ namespace AdoDemo
                     }
                 }
             }
+        }
+
+        private void forgetPass_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void register_label_Click(object sender, EventArgs e)
+        {
+            new Register().Show();
+        }
+
+        private void crossLabel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

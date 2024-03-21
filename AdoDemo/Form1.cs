@@ -16,6 +16,7 @@ namespace AdoDemo
         private void Form1_Load(object sender, EventArgs e)
         {
             string connect = ConfigurationManager.ConnectionStrings["dbsc"].ConnectionString;
+
             using (SqlConnection conn = new SqlConnection())
             {
                 conn.ConnectionString = "Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
