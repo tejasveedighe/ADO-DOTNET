@@ -47,9 +47,11 @@
             label2 = new Label();
             properties_add_property_btn = new Button();
             dataGridView1 = new DataGridView();
+            pictureBox1 = new PictureBox();
             tabControl1.SuspendLayout();
             properties_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -74,6 +76,7 @@
             // 
             // properties_tab
             // 
+            properties_tab.Controls.Add(pictureBox1);
             properties_tab.Controls.Add(delete_btn);
             properties_tab.Controls.Add(desc_txt);
             properties_tab.Controls.Add(update_btn);
@@ -204,7 +207,7 @@
             // 
             // refreshBtn
             // 
-            refreshBtn.Location = new Point(864, 247);
+            refreshBtn.Location = new Point(842, 251);
             refreshBtn.Name = "refreshBtn";
             refreshBtn.Size = new Size(108, 23);
             refreshBtn.TabIndex = 6;
@@ -223,7 +226,7 @@
             // 
             // properties_add_property_btn
             // 
-            properties_add_property_btn.Location = new Point(978, 247);
+            properties_add_property_btn.Location = new Point(956, 251);
             properties_add_property_btn.Name = "properties_add_property_btn";
             properties_add_property_btn.Size = new Size(108, 23);
             properties_add_property_btn.TabIndex = 4;
@@ -246,6 +249,16 @@
             dataGridView1.TabIndex = 4;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Resource1.logo;
+            pictureBox1.Location = new Point(866, 13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(198, 186);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 21;
+            pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -259,6 +272,7 @@
             properties_tab.ResumeLayout(false);
             properties_tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -282,5 +296,6 @@
         private Button update_btn;
         private TextBox desc_txt;
         private Button delete_btn;
+        private PictureBox pictureBox1;
     }
 }

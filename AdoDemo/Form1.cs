@@ -12,8 +12,14 @@ namespace AdoDemo
         public Form1()
         {
             InitializeComponent();
+            AddPropertyForm addPropertyForm = new AddPropertyForm();
+            addPropertyForm.FormClosed += AddPropertyForm_FormClosed;
         }
-
+        private void AddPropertyForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Call the refreshBtn_Click method
+            refreshBtn_Click(sender, e);
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -67,7 +73,7 @@ namespace AdoDemo
             new AddPropertyForm().Show();
         }
 
-        private void refreshBtn_Click(object sender, EventArgs e)
+        public void refreshBtn_Click(object sender, EventArgs e)
         {
             this.Form1_Load(sender, e);
             MessageBox.Show("Refresh Success");
