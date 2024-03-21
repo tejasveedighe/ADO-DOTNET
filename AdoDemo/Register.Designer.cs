@@ -132,7 +132,7 @@
             register_name_txt.PlaceholderText = "Full Name";
             register_name_txt.Size = new Size(203, 28);
             register_name_txt.TabIndex = 3;
-            register_name_txt.Validating += register_repass_txt_Validating;
+            register_name_txt.Validating += register_name_txt_Validating;
             // 
             // register_email_txt
             // 
@@ -144,7 +144,7 @@
             register_email_txt.PlaceholderText = "Email";
             register_email_txt.Size = new Size(203, 28);
             register_email_txt.TabIndex = 5;
-            register_email_txt.Validating += register_repass_txt_Validating;
+            register_email_txt.Validating += register_email_txt_Validating;
             // 
             // label3
             // 
@@ -167,7 +167,7 @@
             register_phone_txt.PlaceholderText = "Phone No";
             register_phone_txt.Size = new Size(203, 28);
             register_phone_txt.TabIndex = 7;
-            register_phone_txt.Validating += register_repass_txt_Validating;
+            register_phone_txt.Validating += register_phone_txt_Validating;
             // 
             // label4
             // 
@@ -190,7 +190,8 @@
             register_pass_txt.PlaceholderText = "Password";
             register_pass_txt.Size = new Size(203, 28);
             register_pass_txt.TabIndex = 9;
-            register_pass_txt.Validating += register_repass_txt_Validating;
+            register_pass_txt.UseSystemPasswordChar = true;
+            register_pass_txt.Validating += register_pass_txt_Validating;
             // 
             // label5
             // 
@@ -216,7 +217,7 @@
             register_buyer_radio.TabStop = true;
             register_buyer_radio.Text = "Buyer";
             register_buyer_radio.UseVisualStyleBackColor = true;
-            register_buyer_radio.Validating += register_seller_radio_Validating;
+            register_buyer_radio.Validating += register_buyer_radio_Validating;
             // 
             // register_seller_radio
             // 

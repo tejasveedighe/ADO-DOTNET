@@ -107,24 +107,65 @@ namespace AdoDemo
 
         }
 
+        private void register_name_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(register_name_txt, e, "Name");
+        }
+
+        private void register_email_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(register_email_txt, e, "Email");
+        }
+
+        private void register_phone_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(register_phone_txt, e, "Phone Number");
+        }
+
+        private void register_pass_txt_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateTextBox(register_pass_txt, e, "Password");
+        }
+
+        private void register_buyer_radio_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateRadioButtonSelection(register_buyer_radio, register_seller_radio, e, "User Type");
+        }
+
         private void register_seller_radio_Validating(object sender, CancelEventArgs e)
         {
-            CheckBox? cb = sender as CheckBox;
-            if (cb != null)
-            {
+            ValidateRadioButtonSelection(register_seller_radio, register_buyer_radio, e, "User Type");
+        }
 
-                if (cb.Checked == false)
-                {
-                    e.Cancel = true;
-                    cb.Focus();
-                    errorProvider1.SetError(cb, "One must be selected");
-                }
-                else
-                {
-                    e.Cancel = false;
-                    errorProvider1.SetError(cb, "");
-                }
+        private void ValidateTextBox(TextBox textBox, CancelEventArgs e, string fieldName)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                errorProvider1.SetError(textBox, fieldName + " cannot be empty");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(textBox, "");
             }
         }
+
+        private void ValidateRadioButtonSelection(RadioButton radioButton, RadioButton otherRadioButton, CancelEventArgs e, string fieldName)
+        {
+            if (!radioButton.Checked && !otherRadioButton.Checked)
+            {
+                e.Cancel = true;
+                radioButton.Focus();
+                errorProvider1.SetError(radioButton, fieldName + " must be selected");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(radioButton, "");
+            }
+        }
+
     }
 }
