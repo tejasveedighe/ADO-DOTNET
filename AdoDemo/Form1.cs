@@ -131,10 +131,8 @@ namespace AdoDemo
 
                 try
                 {
-                    // Open the connection
                     conn.Open();
 
-                    // Execute the command
                     int rowsAffected = command.ExecuteNonQuery();
                     MessageBox.Show(rowsAffected + " row(s) updated.");
                     refreshBtn_Click(sender, e);
@@ -150,5 +148,33 @@ namespace AdoDemo
             }
         }
 
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+            {
+                string query = @"DELETE FROM lpProperty WHERE PropertyId = @PropertyId";
+
+                SqlCommand command = new SqlCommand(query, conn);
+
+                command.Parameters.AddWithValue("@PropertyId", PropertyId);
+
+                try
+                {
+                    conn.Open();
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    MessageBox.Show(rowsAffected + " row(s) deleted.");
+                    refreshBtn_Click(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating data: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
     }
 }

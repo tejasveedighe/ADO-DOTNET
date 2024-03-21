@@ -32,6 +32,7 @@
             tabControl1 = new TabControl();
             users_tab = new TabPage();
             properties_tab = new TabPage();
+            desc_txt = new TextBox();
             update_btn = new Button();
             type_cb = new ComboBox();
             status_cb = new ComboBox();
@@ -46,7 +47,7 @@
             label2 = new Label();
             properties_add_property_btn = new Button();
             dataGridView1 = new DataGridView();
-            desc_txt = new TextBox();
+            delete_btn = new Button();
             tabControl1.SuspendLayout();
             properties_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -86,6 +87,7 @@
             // 
             // properties_tab
             // 
+            properties_tab.Controls.Add(delete_btn);
             properties_tab.Controls.Add(desc_txt);
             properties_tab.Controls.Add(update_btn);
             properties_tab.Controls.Add(type_cb);
@@ -109,6 +111,15 @@
             properties_tab.TabIndex = 1;
             properties_tab.Text = "Properties";
             properties_tab.UseVisualStyleBackColor = true;
+            // 
+            // desc_txt
+            // 
+            desc_txt.Location = new Point(390, 12);
+            desc_txt.Multiline = true;
+            desc_txt.Name = "desc_txt";
+            desc_txt.PlaceholderText = "Description";
+            desc_txt.Size = new Size(199, 147);
+            desc_txt.TabIndex = 17;
             // 
             // update_btn
             // 
@@ -238,14 +249,15 @@
             dataGridView1.TabIndex = 4;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
-            // desc_txt
+            // delete_btn
             // 
-            desc_txt.Location = new Point(390, 12);
-            desc_txt.Multiline = true;
-            desc_txt.Name = "desc_txt";
-            desc_txt.PlaceholderText = "Description";
-            desc_txt.Size = new Size(199, 147);
-            desc_txt.TabIndex = 17;
+            delete_btn.Location = new Point(390, 175);
+            delete_btn.Name = "delete_btn";
+            delete_btn.Size = new Size(108, 23);
+            delete_btn.TabIndex = 18;
+            delete_btn.Text = "Delete Property";
+            delete_btn.UseVisualStyleBackColor = true;
+            delete_btn.Click += delete_btn_Click;
             // 
             // Form1
             // 
@@ -283,5 +295,6 @@
         private TextBox bedroom_txt;
         private Button update_btn;
         private TextBox desc_txt;
+        private Button delete_btn;
     }
 }
