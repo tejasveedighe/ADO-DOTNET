@@ -79,7 +79,7 @@ namespace AdoDemo
 
             }
             bt.Text = "Register";
-
+            Register.ActiveForm.Close();
         }
 
         private void register_repass_txt_Validating(object sender, CancelEventArgs e)

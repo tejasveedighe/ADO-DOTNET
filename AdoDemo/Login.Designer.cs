@@ -176,8 +176,8 @@
             AcceptButton = SignInBtn;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(337, 479);
-            ControlBox = false;
             Controls.Add(statusStrip1);
             Controls.Add(pictureBox1);
             Controls.Add(register_label);
@@ -187,8 +187,10 @@
             Controls.Add(userEmail_txt);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
+            HelpButton = true;
             Name = "Login";
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

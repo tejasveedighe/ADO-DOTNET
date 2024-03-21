@@ -42,8 +42,6 @@
             label4 = new Label();
             register_pass_txt = new TextBox();
             label5 = new Label();
-            register_repass_txt = new TextBox();
-            label6 = new Label();
             register_buyer_radio = new RadioButton();
             register_seller_radio = new RadioButton();
             label7 = new Label();
@@ -206,35 +204,12 @@
             label5.Text = "Password";
             label5.UseMnemonic = false;
             // 
-            // register_repass_txt
-            // 
-            register_repass_txt.BorderStyle = BorderStyle.None;
-            register_repass_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            register_repass_txt.Location = new Point(479, 286);
-            register_repass_txt.MinimumSize = new Size(203, 28);
-            register_repass_txt.Name = "register_repass_txt";
-            register_repass_txt.PlaceholderText = "Re-password";
-            register_repass_txt.Size = new Size(203, 28);
-            register_repass_txt.TabIndex = 11;
-            register_repass_txt.Validating += register_repass_txt_Validating;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = Color.MediumSeaGreen;
-            label6.Location = new Point(346, 284);
-            label6.Name = "label6";
-            label6.Size = new Size(122, 24);
-            label6.TabIndex = 10;
-            label6.Text = "Re-Password";
-            // 
             // register_buyer_radio
             // 
             register_buyer_radio.AutoSize = true;
             register_buyer_radio.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             register_buyer_radio.ForeColor = Color.MediumSeaGreen;
-            register_buyer_radio.Location = new Point(479, 334);
+            register_buyer_radio.Location = new Point(480, 303);
             register_buyer_radio.Name = "register_buyer_radio";
             register_buyer_radio.Size = new Size(77, 28);
             register_buyer_radio.TabIndex = 12;
@@ -248,7 +223,7 @@
             register_seller_radio.AutoSize = true;
             register_seller_radio.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             register_seller_radio.ForeColor = Color.MediumSeaGreen;
-            register_seller_radio.Location = new Point(605, 334);
+            register_seller_radio.Location = new Point(606, 303);
             register_seller_radio.Name = "register_seller_radio";
             register_seller_radio.Size = new Size(76, 28);
             register_seller_radio.TabIndex = 13;
@@ -275,7 +250,7 @@
             register_user_btn.FlatStyle = FlatStyle.Flat;
             register_user_btn.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             register_user_btn.ForeColor = SystemColors.Control;
-            register_user_btn.Location = new Point(572, 377);
+            register_user_btn.Location = new Point(573, 346);
             register_user_btn.Name = "register_user_btn";
             register_user_btn.Size = new Size(110, 38);
             register_user_btn.TabIndex = 2;
@@ -289,7 +264,7 @@
             label8.Cursor = Cursors.Hand;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.MediumSeaGreen;
-            label8.Location = new Point(346, 395);
+            label8.Location = new Point(347, 364);
             label8.Name = "label8";
             label8.Size = new Size(162, 20);
             label8.TabIndex = 14;
@@ -311,8 +286,6 @@
             Controls.Add(label7);
             Controls.Add(register_seller_radio);
             Controls.Add(register_buyer_radio);
-            Controls.Add(register_repass_txt);
-            Controls.Add(label6);
             Controls.Add(register_pass_txt);
             Controls.Add(label5);
             Controls.Add(register_phone_txt);
@@ -327,6 +300,7 @@
             HelpButton = true;
             MaximizeBox = false;
             Name = "Register";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Register";
             Load += Register_Load;
             panel1.ResumeLayout(false);
@@ -353,8 +327,6 @@
         private Label label4;
         private TextBox register_pass_txt;
         private Label label5;
-        private TextBox register_repass_txt;
-        private Label label6;
         private RadioButton register_buyer_radio;
         private RadioButton register_seller_radio;
         private Label label7;
