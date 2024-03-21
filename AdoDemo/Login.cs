@@ -58,49 +58,58 @@ namespace AdoDemo
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+                Button btn = sender as Button;
+                if (btn != null)
                 {
-                    try
+                    btn.Enabled = false;
+                    btn.Text = "Loggin in";
+
+                    using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
                     {
-                        SqlCommand loginCommand = new SqlCommand("SELECT * from LpUser WHERE Email = @Email and Password = @Password", conn);
-
-                        loginCommand.Parameters.AddWithValue("@Email", userEmail_txt.Text);
-                        loginCommand.Parameters.AddWithValue("@Password", userPassword_txt.Text);
-
-                        conn.Open();
-                        SqlDataReader user = loginCommand.ExecuteReader();
-
-                        if (user != null)
+                        try
                         {
-                            if (user.Read())
+                            SqlCommand loginCommand = new SqlCommand("SELECT * from LpUser WHERE Email = @Email and Password = @Password", conn);
+
+                            loginCommand.Parameters.AddWithValue("@Email", userEmail_txt.Text);
+                            loginCommand.Parameters.AddWithValue("@Password", userPassword_txt.Text);
+
+                            conn.Open();
+                            SqlDataReader user = loginCommand.ExecuteReader();
+
+                            if (user != null)
                             {
-                                Program.user = new Model.User
+                                if (user.Read())
                                 {
-                                    Name = user["Name"].ToString(),
-                                    Email = user["Email"].ToString(),
-                                    UserType = user["UserType"].ToString(),
-                                    Phone = user["Phone"].ToString(),
-                                };
+                                    Program.user = new Model.User
+                                    {
+                                        Name = user["Name"].ToString(),
+                                        Email = user["Email"].ToString(),
+                                        UserType = user["UserType"].ToString(),
+                                        Phone = user["Phone"].ToString(),
+                                    };
+                                }
+                                MessageBox.Show($"Login Successfull", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                Form1 form1 = new Form1();
+                                form1.Show();
                             }
-                            MessageBox.Show($"Login Successfull", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            else
+                            {
+                                MessageBox.Show("Login Failed", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
 
-                            Form1 form1 = new Form1();
-                            form1.Show();
                         }
-                        else
+                        catch (Exception error)
                         {
-                            MessageBox.Show("Login Failed", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(error.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
+                        finally
+                        {
+                            conn.Close();
+                        }
                     }
-                    catch (Exception error)
-                    {
-                        MessageBox.Show(error.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        conn.Close();
-                    }
+                    btn.Enabled = true;
+                    btn.Text = "Sign In";
                 }
             }
         }
