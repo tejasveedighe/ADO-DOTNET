@@ -112,6 +112,7 @@
             forgetPass_label.Size = new Size(132, 21);
             forgetPass_label.TabIndex = 5;
             forgetPass_label.Text = "Forget Password?";
+            forgetPass_label.Visible = false;
             forgetPass_label.Click += forgetPass_label_Click;
             // 
             // register_label
@@ -181,11 +182,11 @@
             Controls.Add(statusStrip1);
             Controls.Add(pictureBox1);
             Controls.Add(register_label);
-            Controls.Add(forgetPass_label);
             Controls.Add(SignInBtn);
             Controls.Add(userPassword_txt);
             Controls.Add(userEmail_txt);
             Controls.Add(label1);
+            Controls.Add(forgetPass_label);
             FormBorderStyle = FormBorderStyle.None;
             HelpButton = true;
             Name = "Login";
