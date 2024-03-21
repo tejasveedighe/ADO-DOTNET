@@ -167,6 +167,7 @@
             register_phone_txt.PlaceholderText = "Phone No";
             register_phone_txt.Size = new Size(203, 28);
             register_phone_txt.TabIndex = 7;
+            register_phone_txt.KeyPress += register_phone_txt_KeyPress;
             register_phone_txt.Validating += register_phone_txt_Validating;
             // 
             // label4

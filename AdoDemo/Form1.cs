@@ -104,9 +104,11 @@ namespace AdoDemo
 
         private void update_btn_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                string query = @"UPDATE lpProperty 
+                using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+                {
+                    string query = @"UPDATE lpProperty 
                      SET PropertyTitle = @PropertyTitle, 
                          PropertyType = @PropertyType, 
                          Location = @Location, 
@@ -120,67 +122,157 @@ namespace AdoDemo
                          ContactNumber = @ContactNumber
                      WHERE PropertyId = @PropertyId";
 
-                SqlCommand command = new SqlCommand(query, conn);
-                // Add parameters to the command
-                command.Parameters.AddWithValue("@PropertyTitle", property_title_txt.Text);
-                command.Parameters.AddWithValue("@PropertyType", type_cb.SelectedItem.ToString());
-                command.Parameters.AddWithValue("@Location", property_location_txt.Text);
-                command.Parameters.AddWithValue("@Price", price_txt.Text);
-                command.Parameters.AddWithValue("@NoBedroom", bedroom_txt.Text);
-                command.Parameters.AddWithValue("@NoBathroom", bathroom_Txt.Text);
-                command.Parameters.AddWithValue("@SquareFeet", squareFeet_txt.Text);
-                command.Parameters.AddWithValue("@Status", status_cb.SelectedItem.ToString());
-                command.Parameters.AddWithValue("@DateUpdated", DateTime.Now);
-                command.Parameters.AddWithValue("@PropertyId", PropertyId);
-                command.Parameters.AddWithValue("@ContactNumber", contact_txt.Text);
-                command.Parameters.AddWithValue("@Description", desc_txt.Text);
+                    SqlCommand command = new SqlCommand(query, conn);
+                    // Add parameters to the command
+                    command.Parameters.AddWithValue("@PropertyTitle", property_title_txt.Text);
+                    command.Parameters.AddWithValue("@PropertyType", type_cb.SelectedItem.ToString());
+                    command.Parameters.AddWithValue("@Location", property_location_txt.Text);
+                    command.Parameters.AddWithValue("@Price", price_txt.Text);
+                    command.Parameters.AddWithValue("@NoBedroom", bedroom_txt.Text);
+                    command.Parameters.AddWithValue("@NoBathroom", bathroom_Txt.Text);
+                    command.Parameters.AddWithValue("@SquareFeet", squareFeet_txt.Text);
+                    command.Parameters.AddWithValue("@Status", status_cb.SelectedItem.ToString());
+                    command.Parameters.AddWithValue("@DateUpdated", DateTime.Now);
+                    command.Parameters.AddWithValue("@PropertyId", PropertyId);
+                    command.Parameters.AddWithValue("@ContactNumber", contact_txt.Text);
+                    command.Parameters.AddWithValue("@Description", desc_txt.Text);
 
-                try
-                {
-                    conn.Open();
+                    try
+                    {
+                        conn.Open();
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    MessageBox.Show(rowsAffected + " row(s) updated.");
-                    refreshBtn_Click(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error updating data: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected + " row(s) updated.");
+                        refreshBtn_Click(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating data: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
                 }
             }
         }
 
         private void delete_btn_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                string query = @"DELETE FROM lpProperty WHERE PropertyId = @PropertyId";
-
-                SqlCommand command = new SqlCommand(query, conn);
-
-                command.Parameters.AddWithValue("@PropertyId", PropertyId);
-
-                try
+                using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
                 {
-                    conn.Open();
+                    string query = @"DELETE FROM lpProperty WHERE PropertyId = @PropertyId";
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    MessageBox.Show(rowsAffected + " row(s) deleted.");
-                    refreshBtn_Click(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error updating data: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
+                    SqlCommand command = new SqlCommand(query, conn);
+
+                    command.Parameters.AddWithValue("@PropertyId", PropertyId);
+
+                    try
+                    {
+                        conn.Open();
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected + " row(s) deleted.");
+                        refreshBtn_Click(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating data: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
                 }
             }
         }
+
+        private void contact_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != '\b';
+        }
+
+        private void property_title_txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(property_title_txt, e, "Property Title");
+        }
+
+        private void contact_txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(contact_txt, e, "Contact Number");
+        }
+
+        private void squareFeet_txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(squareFeet_txt, e, "Square Feet");
+        }
+
+        private void property_location_txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(property_location_txt, e, "Location");
+        }
+
+        private void price_txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(price_txt, e, "Price");
+        }
+
+        private void status_cb_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateComboBox(status_cb, e, "Status");
+        }
+
+        private void bedroom_txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(bedroom_txt, e, "Number of Bedrooms");
+        }
+
+        private void type_cb_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateComboBox(type_cb, e, "Property Type");
+        }
+
+        private void bathroom_Txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(bathroom_Txt, e, "Number of Bathrooms");
+        }
+
+        private void desc_txt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateTextBox(desc_txt, e, "Description");
+        }
+
+        private void ValidateTextBox(TextBox textBox, System.ComponentModel.CancelEventArgs e, string fieldName)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                errorProvider1.SetError(textBox, fieldName + " cannot be empty");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(textBox, "");
+            }
+        }
+
+        private void ValidateComboBox(ComboBox comboBox, System.ComponentModel.CancelEventArgs e, string fieldName)
+        {
+            if (comboBox.SelectedIndex == -1)
+            {
+                e.Cancel = true;
+                comboBox.Focus();
+                errorProvider1.SetError(comboBox, fieldName + " must be selected");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(comboBox, "");
+            }
+        }
+
     }
 }

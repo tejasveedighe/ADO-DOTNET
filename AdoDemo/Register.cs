@@ -167,5 +167,9 @@ namespace AdoDemo
             }
         }
 
+        private void register_phone_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != '\b';
+        }
     }
 }

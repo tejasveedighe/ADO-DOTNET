@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             tabControl1 = new TabControl();
             properties_tab = new TabPage();
+            pictureBox1 = new PictureBox();
             delete_btn = new Button();
             desc_txt = new TextBox();
             update_btn = new Button();
@@ -47,11 +49,12 @@
             label2 = new Label();
             properties_add_property_btn = new Button();
             dataGridView1 = new DataGridView();
-            pictureBox1 = new PictureBox();
+            errorProvider1 = new ErrorProvider(components);
             tabControl1.SuspendLayout();
             properties_tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -102,6 +105,16 @@
             properties_tab.Text = "Properties";
             properties_tab.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Resource1.logo;
+            pictureBox1.Location = new Point(866, 13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(198, 186);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 21;
+            pictureBox1.TabStop = false;
+            // 
             // delete_btn
             // 
             delete_btn.Location = new Point(390, 175);
@@ -120,6 +133,7 @@
             desc_txt.PlaceholderText = "Description";
             desc_txt.Size = new Size(199, 147);
             desc_txt.TabIndex = 17;
+            desc_txt.Validating += desc_txt_Validating;
             // 
             // update_btn
             // 
@@ -139,6 +153,7 @@
             type_cb.Name = "type_cb";
             type_cb.Size = new Size(161, 23);
             type_cb.TabIndex = 15;
+            type_cb.Validating += type_cb_Validating;
             // 
             // status_cb
             // 
@@ -148,6 +163,7 @@
             status_cb.Name = "status_cb";
             status_cb.Size = new Size(161, 23);
             status_cb.TabIndex = 14;
+            status_cb.Validating += status_cb_Validating;
             // 
             // contact_txt
             // 
@@ -156,6 +172,8 @@
             contact_txt.PlaceholderText = "Contact Number";
             contact_txt.Size = new Size(161, 23);
             contact_txt.TabIndex = 13;
+            contact_txt.KeyPress += contact_txt_KeyPress;
+            contact_txt.Validating += contact_txt_Validating;
             // 
             // squareFeet_txt
             // 
@@ -164,6 +182,8 @@
             squareFeet_txt.PlaceholderText = "Square Feet";
             squareFeet_txt.Size = new Size(161, 23);
             squareFeet_txt.TabIndex = 12;
+            squareFeet_txt.KeyPress += contact_txt_KeyPress;
+            squareFeet_txt.Validating += squareFeet_txt_Validating;
             // 
             // bathroom_Txt
             // 
@@ -172,6 +192,8 @@
             bathroom_Txt.PlaceholderText = "No of Bathroom";
             bathroom_Txt.Size = new Size(161, 23);
             bathroom_Txt.TabIndex = 11;
+            bathroom_Txt.KeyPress += contact_txt_KeyPress;
+            bathroom_Txt.Validating += bathroom_Txt_Validating;
             // 
             // bedroom_txt
             // 
@@ -180,6 +202,8 @@
             bedroom_txt.PlaceholderText = "No of Bedroom";
             bedroom_txt.Size = new Size(161, 23);
             bedroom_txt.TabIndex = 10;
+            bedroom_txt.KeyPress += contact_txt_KeyPress;
+            bedroom_txt.Validating += bedroom_txt_Validating;
             // 
             // price_txt
             // 
@@ -188,6 +212,8 @@
             price_txt.PlaceholderText = "Price";
             price_txt.Size = new Size(161, 23);
             price_txt.TabIndex = 9;
+            price_txt.KeyPress += contact_txt_KeyPress;
+            price_txt.Validating += price_txt_Validating;
             // 
             // property_location_txt
             // 
@@ -196,6 +222,7 @@
             property_location_txt.PlaceholderText = "Property Location";
             property_location_txt.Size = new Size(161, 23);
             property_location_txt.TabIndex = 8;
+            property_location_txt.Validating += property_location_txt_Validating;
             // 
             // property_title_txt
             // 
@@ -204,6 +231,7 @@
             property_title_txt.PlaceholderText = "Property Title";
             property_title_txt.Size = new Size(161, 23);
             property_title_txt.TabIndex = 7;
+            property_title_txt.Validating += property_title_txt_Validating;
             // 
             // refreshBtn
             // 
@@ -249,15 +277,9 @@
             dataGridView1.TabIndex = 4;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
-            // pictureBox1
+            // errorProvider1
             // 
-            pictureBox1.Image = Resource1.logo;
-            pictureBox1.Location = new Point(866, 13);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(198, 186);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 21;
-            pictureBox1.TabStop = false;
+            errorProvider1.ContainerControl = this;
             // 
             // Form1
             // 
@@ -271,8 +293,9 @@
             tabControl1.ResumeLayout(false);
             properties_tab.ResumeLayout(false);
             properties_tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -297,5 +320,6 @@
         private TextBox desc_txt;
         private Button delete_btn;
         private PictureBox pictureBox1;
+        private ErrorProvider errorProvider1;
     }
 }
