@@ -16,5 +16,15 @@ namespace AdoDemo
         {
             InitializeComponent();
         }
+
+        private void crossLabel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

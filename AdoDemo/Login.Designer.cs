@@ -156,6 +156,7 @@
             statusStrip1.RenderMode = ToolStripRenderMode.Professional;
             statusStrip1.RightToLeft = RightToLeft.Yes;
             statusStrip1.Size = new Size(337, 30);
+            statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 8;
             statusStrip1.Text = " ";
             // 
