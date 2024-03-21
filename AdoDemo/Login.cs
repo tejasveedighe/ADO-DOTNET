@@ -91,8 +91,8 @@ namespace AdoDemo
                                 }
                                 MessageBox.Show($"Login Successfull", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                new Form1().Show();
-                                Login.ActiveForm.Close();
+                                Form1 form1 = new Form1();
+                                form1.Show();
                             }
                             else
                             {

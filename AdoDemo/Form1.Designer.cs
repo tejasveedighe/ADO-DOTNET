@@ -30,8 +30,8 @@
         {
             label1 = new Label();
             tabControl1 = new TabControl();
-            users_tab = new TabPage();
             properties_tab = new TabPage();
+            delete_btn = new Button();
             desc_txt = new TextBox();
             update_btn = new Button();
             type_cb = new ComboBox();
@@ -47,7 +47,6 @@
             label2 = new Label();
             properties_add_property_btn = new Button();
             dataGridView1 = new DataGridView();
-            delete_btn = new Button();
             tabControl1.SuspendLayout();
             properties_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -65,25 +64,13 @@
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(users_tab);
             tabControl1.Controls.Add(properties_tab);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1097, 643);
+            tabControl1.Size = new Size(1097, 681);
             tabControl1.TabIndex = 3;
-            // 
-            // users_tab
-            // 
-            users_tab.Location = new Point(4, 24);
-            users_tab.Name = "users_tab";
-            users_tab.Padding = new Padding(3);
-            users_tab.Size = new Size(1089, 615);
-            users_tab.TabIndex = 0;
-            users_tab.Text = "Users";
-            users_tab.UseVisualStyleBackColor = true;
-            users_tab.Click += users_tab_Click;
             // 
             // properties_tab
             // 
@@ -107,10 +94,20 @@
             properties_tab.Location = new Point(4, 24);
             properties_tab.Name = "properties_tab";
             properties_tab.Padding = new Padding(3);
-            properties_tab.Size = new Size(1089, 615);
+            properties_tab.Size = new Size(1089, 653);
             properties_tab.TabIndex = 1;
             properties_tab.Text = "Properties";
             properties_tab.UseVisualStyleBackColor = true;
+            // 
+            // delete_btn
+            // 
+            delete_btn.Location = new Point(390, 175);
+            delete_btn.Name = "delete_btn";
+            delete_btn.Size = new Size(108, 23);
+            delete_btn.TabIndex = 18;
+            delete_btn.Text = "Delete Property";
+            delete_btn.UseVisualStyleBackColor = true;
+            delete_btn.Click += delete_btn_Click;
             // 
             // desc_txt
             // 
@@ -207,7 +204,7 @@
             // 
             // refreshBtn
             // 
-            refreshBtn.Location = new Point(859, 209);
+            refreshBtn.Location = new Point(864, 247);
             refreshBtn.Name = "refreshBtn";
             refreshBtn.Size = new Size(108, 23);
             refreshBtn.TabIndex = 6;
@@ -218,7 +215,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 217);
+            label2.Location = new Point(11, 255);
             label2.Name = "label2";
             label2.Size = new Size(77, 15);
             label2.TabIndex = 5;
@@ -226,7 +223,7 @@
             // 
             // properties_add_property_btn
             // 
-            properties_add_property_btn.Location = new Point(973, 209);
+            properties_add_property_btn.Location = new Point(978, 247);
             properties_add_property_btn.Name = "properties_add_property_btn";
             properties_add_property_btn.Size = new Size(108, 23);
             properties_add_property_btn.TabIndex = 4;
@@ -240,7 +237,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.Location = new Point(3, 238);
+            dataGridView1.Location = new Point(3, 276);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -249,21 +246,11 @@
             dataGridView1.TabIndex = 4;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
-            // delete_btn
-            // 
-            delete_btn.Location = new Point(390, 175);
-            delete_btn.Name = "delete_btn";
-            delete_btn.Size = new Size(108, 23);
-            delete_btn.TabIndex = 18;
-            delete_btn.Text = "Delete Property";
-            delete_btn.UseVisualStyleBackColor = true;
-            delete_btn.Click += delete_btn_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1097, 643);
+            ClientSize = new Size(1097, 681);
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Admin Panel";
@@ -278,7 +265,6 @@
         #endregion
         private Label label1;
         private TabControl tabControl1;
-        private TabPage users_tab;
         private TabPage properties_tab;
         private DataGridView dataGridView1;
         private Button properties_add_property_btn;
