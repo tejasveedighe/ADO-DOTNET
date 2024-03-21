@@ -23,11 +23,9 @@ namespace AdoDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string connect = ConfigurationManager.ConnectionStrings["dbsc"].ConnectionString;
-
             using (SqlConnection conn = new SqlConnection())
             {
-                conn.ConnectionString = "Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["dbsc"].ConnectionString;
                 try
                 {
                     string getPropertiesCommand = "SELECT * FROM lpProperty";
@@ -106,7 +104,7 @@ namespace AdoDemo
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbsc"].ConnectionString))
                 {
                     string query = @"UPDATE lpProperty 
                      SET PropertyTitle = @PropertyTitle, 
@@ -161,7 +159,7 @@ namespace AdoDemo
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbsc"].ConnectionString))
                 {
                     string query = @"DELETE FROM lpProperty WHERE PropertyId = @PropertyId";
 
