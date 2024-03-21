@@ -1,7 +1,10 @@
+using AdoDemo.Model;
+
 namespace AdoDemo
 {
     internal static class Program
     {
+        public static User user { get; set; }
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

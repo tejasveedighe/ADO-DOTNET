@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -15,6 +17,88 @@ namespace AdoDemo
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void userEmail_txt_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(userEmail_txt.Text))
+            {
+                e.Cancel = true;
+                userEmail_txt.Focus();
+                errorProvider1.SetError(userEmail_txt, "Email cannot be empty");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(userEmail_txt, "");
+            }
+        }
+
+        private void userPassword_txt_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(userPassword_txt.Text))
+            {
+                e.Cancel = true;
+                userPassword_txt.Focus();
+                errorProvider1.SetError(userPassword_txt, "Password cannot be empty");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(userPassword_txt, "");
+            }
+        }
+
+        private void SignInBtn_Click(object sender, EventArgs e)
+        {
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                using (SqlConnection conn = new SqlConnection("Data Source=SQL12-16-LATEST\\SQL2016;Initial Catalog=SNW;User ID=nagesh;Password=Download@1;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"))
+                {
+                    try
+                    {
+                        SqlCommand loginCommand = new SqlCommand("SELECT * from LpUser WHERE Email = @Email and Password = @Password", conn);
+
+                        loginCommand.Parameters.AddWithValue("@Email", userEmail_txt.Text);
+                        loginCommand.Parameters.AddWithValue("@Password", userPassword_txt.Text);
+
+                        conn.Open();
+                        SqlDataReader user = loginCommand.ExecuteReader();
+
+                        if (user != null)
+                        {
+                            if (user.Read())
+                            {
+                                Program.user.Name = user["Name"].ToString();
+                                Program.user.Email = user["Email"].ToString();
+                                Program.user.UserType = user["UserType"].ToString();
+                                Program.user.Phone = user["Phone"].ToString();
+                            }
+                            MessageBox.Show($"Login Successfull", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Form1 form1 = new Form1();
+                            form1.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Login Failed", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                    }
+                    catch (Exception error)
+                    {
+                        MessageBox.Show(error.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
         }
     }
 }

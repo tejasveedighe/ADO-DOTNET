@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             userEmail_txt = new TextBox();
             userPassword_txt = new TextBox();
@@ -35,7 +36,9 @@
             label2 = new Label();
             label3 = new Label();
             pictureBox1 = new PictureBox();
+            errorProvider1 = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -52,20 +55,27 @@
             // userEmail_txt
             // 
             userEmail_txt.BorderStyle = BorderStyle.None;
-            userEmail_txt.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            userEmail_txt.Location = new Point(53, 170);
+            userEmail_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            userEmail_txt.Location = new Point(50, 166);
+            userEmail_txt.MinimumSize = new Size(233, 28);
             userEmail_txt.Name = "userEmail_txt";
-            userEmail_txt.Size = new Size(233, 32);
+            userEmail_txt.PlaceholderText = "User Email...";
+            userEmail_txt.Size = new Size(233, 28);
             userEmail_txt.TabIndex = 1;
+            userEmail_txt.Validating += userEmail_txt_Validating;
             // 
             // userPassword_txt
             // 
             userPassword_txt.BorderStyle = BorderStyle.None;
-            userPassword_txt.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            userPassword_txt.Location = new Point(53, 236);
+            userPassword_txt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            userPassword_txt.Location = new Point(50, 214);
+            userPassword_txt.MinimumSize = new Size(233, 28);
             userPassword_txt.Name = "userPassword_txt";
-            userPassword_txt.Size = new Size(233, 32);
+            userPassword_txt.PlaceholderText = "Password...";
+            userPassword_txt.Size = new Size(233, 28);
             userPassword_txt.TabIndex = 2;
+            userPassword_txt.UseSystemPasswordChar = true;
+            userPassword_txt.Validating += userPassword_txt_Validating;
             // 
             // SignInBtn
             // 
@@ -75,19 +85,20 @@
             SignInBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             SignInBtn.ForeColor = Color.Cornsilk;
             SignInBtn.ImageAlign = ContentAlignment.TopRight;
-            SignInBtn.Location = new Point(113, 326);
+            SignInBtn.Location = new Point(110, 305);
             SignInBtn.Name = "SignInBtn";
             SignInBtn.Size = new Size(100, 30);
             SignInBtn.TabIndex = 3;
             SignInBtn.Text = "Sign In";
             SignInBtn.UseVisualStyleBackColor = false;
+            SignInBtn.Click += SignInBtn_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.MediumSeaGreen;
-            label2.Location = new Point(154, 271);
+            label2.Location = new Point(151, 249);
             label2.Name = "label2";
             label2.Size = new Size(132, 21);
             label2.TabIndex = 5;
@@ -108,14 +119,20 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = SystemColors.Control;
             pictureBox1.BackgroundImage = Resource1.pngwing_com;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.ErrorImage = Resource1.pngwing_com;
-            pictureBox1.Image = Resource1.pngwing_com;
-            pictureBox1.Location = new Point(53, 70);
+            pictureBox1.Image = Resource1.logo;
+            pictureBox1.Location = new Point(135, 70);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(228, 78);
+            pictureBox1.Size = new Size(61, 58);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // Login
             // 
@@ -131,7 +148,9 @@
             Controls.Add(label1);
             Name = "Login";
             Text = "Login";
+            Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -145,5 +164,6 @@
         private Label label2;
         private Label label3;
         private PictureBox pictureBox1;
+        private ErrorProvider errorProvider1;
     }
 }

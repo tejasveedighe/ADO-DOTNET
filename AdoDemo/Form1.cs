@@ -36,6 +36,7 @@ namespace AdoDemo
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = sqlDataReader;
                 dataGridView1.DataSource = bindingSource;
+
             }
             catch (Exception ex)
             {
@@ -43,11 +44,8 @@ namespace AdoDemo
             }
             finally
             {
-
                 conn.Close();
             }
-
-
         }
     }
 }
