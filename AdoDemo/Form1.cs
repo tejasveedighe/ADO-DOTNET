@@ -38,10 +38,8 @@ namespace AdoDemo
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
 
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
                     BindingSource bindingSource = new BindingSource();
-                    bindingSource.DataSource = sqlDataReader;
+                    bindingSource.DataSource = dataTable;
                     dataGridView1.DataSource = bindingSource;
 
                 }
