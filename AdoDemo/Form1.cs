@@ -1,7 +1,8 @@
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 // this class has the configuration manager
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace AdoDemo
